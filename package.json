@@ -1,0 +1,15 @@
+{
+  "name": "data-structures-and-algorithms",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc --build tsconfig.json"
+  },
+  "author": "gerkenv@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^3.1.6"
+  }
+}
