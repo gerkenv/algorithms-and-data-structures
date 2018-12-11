@@ -1,11 +1,11 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-      "module": "system",
+      "module": "commonjs",
       "noImplicitAny": true,
       "preserveConstEnums": true,
       "outDir": "./js",
-      "sourceMap": true
+      "rootDir": "./ts"
   },
   "include": [
       "ts/**/*"
