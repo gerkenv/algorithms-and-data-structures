@@ -1,19 +1,20 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-      "module": "commonjs",
-      "noImplicitAny": true,
-      "preserveConstEnums": true,
-      "outDir": "./js",
-      "rootDir": "./ts",
-      // "watch": true
-      // http://www.typescriptlang.org/docs/handbook/configuring-watch.html
+    // http://www.typescriptlang.org/docs/handbook/compiler-options.html
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "outDir": "./js",
+    "rootDir": "./ts",
+    // "watch": true
+    // http://www.typescriptlang.org/docs/handbook/configuring-watch.html
   },
   "include": [
-      "ts/**/*"
+    "ts/**/*"
   ],
   "exclude": [
-      "node_modules",
-      "**/*.spec.ts"
+    "node_modules",
+    "**/*.spec.ts"
   ]
 }
