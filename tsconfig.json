@@ -5,13 +5,13 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "preserveConstEnums": true,
-    "outDir": "./js",
-    "rootDir": "./ts",
+    "outDir": "./dist",
+    "rootDir": "./src",
     // "watch": true
     // http://www.typescriptlang.org/docs/handbook/configuring-watch.html
   },
   "include": [
-    "ts/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
