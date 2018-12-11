@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+      "module": "system",
+      "noImplicitAny": true,
+      "preserveConstEnums": true,
+      "outDir": "./js",
+      "sourceMap": true
+  },
+  "include": [
+      "ts/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+  ]
+}
