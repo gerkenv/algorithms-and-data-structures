@@ -2,14 +2,14 @@
  * Union-find class with quick `find` function.
  */
 export class UnionFindQuickFind {
-  ids: number[];
+  private _array: number[];
   /**
    * Create a union-find structure.
    * @param n - quantity of elements in a structure.
    */
   constructor(n : number) {
     for (let i : number = 0; i < n; n++) {
-      this.ids[i] = i;
+      this._array[i] = i;
     }
   }
 
@@ -19,7 +19,7 @@ export class UnionFindQuickFind {
    * @param q - certain element of structure.
    */
   connect = (p : number, q : number) : boolean => {
-    return this.ids[p] === this.ids[q];
+    return this._array[p] === this._array[q];
   }
 
   /**
@@ -28,10 +28,10 @@ export class UnionFindQuickFind {
    * @param q - certain element of a structure.
    */
   union = (p : number, q : number) : void => {
-    let pid : number = this.ids[p];
-    let qid : number = this.ids[q];
-    for (let i : number = 0; i < this.ids.length; i++) {
-      if (this.ids[i] == pid) this.ids[i] = qid;
+    let pid : number = this._array[p];
+    let qid : number = this._array[q];
+    for (let i : number = 0; i < this._array.length; i++) {
+      if (this._array[i] == pid) this._array[i] = qid;
     }
   }
 }
