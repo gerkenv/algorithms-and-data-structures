@@ -8,7 +8,7 @@ Based on resources of
 The structure is designed to contain many components (unions) of entries. It helps to figure out if 2 entries are belong to the same component (union) or not.
 
 ### 1.1.1 Rate Of Growth g(n)
-| Class                   | Initialization | Connect | Find |
+| Class                   | Initialization | Union   | Find |
 |-------------------------|----------------|---------|------|
 | UnionFindQuickFind      | N              | N       | 1    |
 | UnionFindQuickUnion     | N              | N       | N    |
