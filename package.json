@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc --build tsconfig.json",
-    "debug": "node --nolazy --inspect-brk=9229 ./src/algorithms/algorithms.js"
+    "debug": "node --nolazy --inspect-brk=9229 ./src/algorithms/test.js"
   },
   "author": "gerkenv@gmail.com",
   "license": "ISC",
