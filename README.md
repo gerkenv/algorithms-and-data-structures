@@ -5,10 +5,18 @@ Based on resources of
 * https://www.hackerrank.com/
 
 ## 1.1 Union-find
-The structure is designed to contain many components (unions) of entries. It helps to figure out if 2 entries are belong to the same component (union) or not.
+The structure was designed to solve dynamic connectivity problems. It contains unions (groups) of elements that are connected within a group.
+ * Initially each element represents its own group.
+ * `union` operation combines groups together.
+ * `find` operation returns a unique group identifier (group root).
+ * `connected` operation returns `true` if elements belong to the same group.
 
 ### 1.1.1 Rate Of Growth g(n)
-| Class                   | Initialization | Union   | Find |
-|-------------------------|----------------|---------|------|
-| UnionFindQuickFind      | N              | N       | 1    |
-| UnionFindQuickUnion     | N              | N       | N    |
+| Class                                        | Initialize | Union   | Find  |
+|----------------------------------------------|------------|---------|-------|
+| UnionFindQuickFind                           | N          | N       | 1     |
+| UnionFindQuickUnion                          | N          | N       | N     |
+| WeightedUnionFindQuickUnion                  | N          | lg N    | lg N  |
+| WeightedUnionFindQuickUnionWithPathCompression | N        | lg* N   | lg* N |
+
+where `lg* N` is a log function iterated to 0.
