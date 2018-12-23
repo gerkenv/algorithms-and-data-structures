@@ -35,14 +35,27 @@ export const SinglyLinkedList = class {
       this._size = 0;
   }
 
+  /**
+   * Returns the number of element in a list.
+   */
   length() : number {
     return this._size;
   }
 
+  /**
+   * Check if a list is empty.
+   * @returns `true` - list is empty.
+   * @returns `false` - list is not empty.
+   */
   isEmpty() : boolean {
     return (this._head === undefined);
   }
 
+  /**
+   * Get a data from the beginning of a linked list.
+   * @returns undefined - if list is empty
+   * @returns `data` - a data that was stored at the beginning of a list
+   */
   peekFirst = () : any => {
     if (this.isEmpty()) return undefined;
     return this._head.data;
@@ -51,7 +64,7 @@ export const SinglyLinkedList = class {
   /**
    * Get a data from the end of a linked list.
    * @returns undefined - if list is empty
-   * @returns `data` - a data that was stored at the end of list
+   * @returns `data` - a data that was stored at the end of a list
    */
   peekLast = () : any => {
     if (this.isEmpty()) return undefined;
