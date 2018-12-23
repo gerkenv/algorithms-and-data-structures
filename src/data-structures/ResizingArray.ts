@@ -70,8 +70,29 @@ export class ResizingArray {
   }
 
   /**
+   * Get a data from the beginning of a linked list.
+   * @returns undefined - if list is empty
+   * @returns `data` - a data that was stored at the beginning of a list
+   */
+  peekFirst = () : any => {
+    if (this.isEmpty()) return undefined;
+    return this._array[this._indexOfFirst];
+  }
+
+  /**
+   * Get a data from the end of a linked list.
+   * @returns undefined - if list is empty
+   * @returns `data` - a data that was stored at the end of a list
+   */
+  peekLast = () : any => {
+    if (this.isEmpty()) return undefined;
+    let indexOfLast = (this._indexOfFirst + this._size - 1) % this._capacity;
+    return this._array[indexOfLast];
+  }
+
+  /**
    * Add an `item` to the end of an array.
-   * @param data - a `data` to add to the end of an arry.
+   * @param data - a `data` to add to the end of an array.
    * @returns nothing.
    */
   push(data : any) : void {
@@ -82,16 +103,43 @@ export class ResizingArray {
   }
 
   /**
-   * Removes a `data` from a beginning of an array.
+   * Removes a `data` from the end of an array.
+   * @returns `data` - an item that was last in an array.
+   */
+  pop() : any {
+    if (this.isEmpty()) return undefined;
+    let indexOfLast = (this._indexOfFirst + this._size - 1) % this._capacity;
+    let data = this._array[indexOfLast];
+    this._array[indexOfLast] = undefined;
+    this._size--;
+    this._checkSize();
+    return data;
+  }
+
+  /**
+   * Add an `item` to the beginning of an array.
+   * @param data - a `data` to add to the beginning of an array.
+   * @returns nothing.
+   */
+  unshift(data : any) : void {
+    this._checkSize();
+    let newIndex = (this._indexOfFirst - 1 + this._capacity) % this._capacity;
+    this._array[newIndex] = data;
+    this._indexOfFirst = newIndex;
+    this._size++;
+  }
+
+  /**
+   * Removes a `data` from the beginning of an array.
    * @returns `data` - an item that was first in an array.
    */
   shift() {
     if (this.isEmpty()) return undefined;
-    this._checkSize();
     let data = this._array[this._indexOfFirst];
     this._array[this._indexOfFirst] = undefined;
     this._indexOfFirst = (this._indexOfFirst + 1) % this._capacity;
     this._size--;
+    this._checkSize();
     return data;
   }
 
