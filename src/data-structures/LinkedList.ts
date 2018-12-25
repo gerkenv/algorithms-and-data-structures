@@ -21,7 +21,7 @@ export class Node {
 /**
  * Linked list with single link (one direction iteration).
  */
-export const SinglyLinkedList = class {
+export class SinglyLinkedList {
   private _head : Node;
   private _tail : Node;
   private _size : number;
