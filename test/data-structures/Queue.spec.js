@@ -6,9 +6,9 @@ const expect = require('chai').expect;
 
 describe('Queue', function() {
   const queues = [QueueOnResizingArray, QueueOnSinglyLinkedList];
-  const queueNames = ['QueueOnResizingArray', 'QueueOnSinglyLinkedList'];
+  const queueClassNames = ['QueueOnResizingArray', 'QueueOnSinglyLinkedList'];
   queues.forEach((Queue, index) => {
-    describe(queueNames[index], () => {
+    describe(queueClassNames[index], () => {
       describe('#constructor', () => {
         const queue = new Queue();
         it('should create an instance of object', () => {
