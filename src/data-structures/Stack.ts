@@ -1,25 +1,33 @@
-import { Node } from './LinkedList';
+import { SinglyLinkedList } from './LinkedList';
+import { ResizingArray } from './ResizingArray';
 
 /**
- * Stack based on singly linked list
- * LIFO bag.
+ * Stack interface
  */
-export class StackOnLinkedList {
-  private _first: Node;
+interface IStack {
+  length() : number;
+  push(item : any) : void;
+  pop() : any;
+  peek() : any;
+}
+
+/**
+ * Stack based (LIFO bag) on singly linked list.
+ */
+export class StackOnSinglyLinkedList implements IStack {
+  private _items : SinglyLinkedList;
   /**
    * Create a new empty stack.
    */
   constructor() {
-    this._first = null;
+    this._items = new SinglyLinkedList();
   }
 
   /**
-   * Check if a stack is empty.
-   * @returns `true` - stack is empty.
-   * @returns `false` - stack is not empty.
+   * Returns a size of an array;
    */
-  isEmpty = () : boolean => {
-    return (this._first == null);
+  length() : number {
+    return this._items.length();
   }
 
   /**
@@ -28,9 +36,7 @@ export class StackOnLinkedList {
    * @returns nothing
    */
   push = (item : any) : void => {
-    let oldFirst : Node = this._first;
-    this._first = new Node(item);
-    this._first.next = oldFirst;
+    this._items.unshift(item);
   }
 
   /**
@@ -39,10 +45,7 @@ export class StackOnLinkedList {
    * @return `undefined` - if a stack is empty.
    */
   pop = () : any => {
-    if (this.isEmpty) return undefined;
-    let item : any = this._first.data;
-    this._first = this._first.next;
-    return item;
+    return this._items.shift();
   }
 
   /**
@@ -51,33 +54,27 @@ export class StackOnLinkedList {
    * @return `undefined` - if a stack is empty.
    */
   peek = () : any => {
-    if (this.isEmpty) return undefined;
-    return this._first.data;
+    return this._items.peekFirst();
   }
 }
 
 /**
- * Stack based on array
- * LIFO bag.
+ * Stack based (LIFO bag) on resizing array.
  */
-export class StackOnArray {
-  private _items : any[];
-  private _n : number;
-
+export class StackOnResizingArray implements IStack{
+  private _items : ResizingArray;
   /**
    * Create a new empty stack.
    */
   constructor() {
-    this._n = 0;
+    this._items = new ResizingArray();
   }
 
   /**
-   * Check if a stack is empty.
-   * @returns `true` - stack is empty.
-   * @returns `false` - stack is not empty.
+   * Returns a size of an array;
    */
-  isEmpty = () : boolean => {
-    return (this._n == 0);
+  length() : number {
+    return this._items.length();
   }
 
   /**
@@ -85,8 +82,8 @@ export class StackOnArray {
    * @param item - data to store in a stack.
    * @returns nothing
    */
-  push = (item: any) : void => {
-    this._items[this._n++] = item;
+  push = (item : any) : void => {
+    this._items.unshift(item);
   }
 
   /**
@@ -95,10 +92,7 @@ export class StackOnArray {
    * @return `undefined` - if a stack is empty.
    */
   pop = () : any => {
-    if (this.isEmpty) return null;
-    let item = this._items.pop();
-    this._n--;
-    return item;
+    return this._items.shift();
   }
 
   /**
@@ -107,8 +101,6 @@ export class StackOnArray {
    * @return `undefined` - if a stack is empty.
    */
   peek = () : any => {
-    if (this.isEmpty) return undefined;
-    return this._items[this._n-1].data;
+    return this._items.peekFirst();
   }
 }
-
