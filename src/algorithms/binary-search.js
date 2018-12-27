@@ -6,11 +6,15 @@
  * @returns {number} - index of `digit` in `array` if it was found.
  * @returns `-1` - if `digit` is not found within `array`.
  *
+ * @throws {Error} if `array` is a faulty value (`null`, `undefined` or empty array).
+ * @throws {Error} if `digit` is `null` or `undefined`.
+ *
  * Time complexity is logarithmic.
  */
 const binarySearch = (array, digit) => {
-  if (!array) throw new Error("Argument 'array' is invalid");
+  if (!array) throw new Error("Argument 'array' is `null` or `undefined`");
   if (digit == null) throw new Error("Argument 'digit' is invalid");
+
   let low = 0;
   let high = array.length - 1;
   while (low <= high) {
