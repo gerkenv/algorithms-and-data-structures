@@ -2,6 +2,28 @@
 exports.__esModule = true;
 var ResizingArray = /** @class */ (function () {
     function ResizingArray() {
+        var _this = this;
+        /**
+         * Get a data from the beginning of a linked list.
+         * @returns undefined - if list is empty
+         * @returns `data` - a data that was stored at the beginning of a list
+         */
+        this.peekFirst = function () {
+            if (_this.isEmpty())
+                return undefined;
+            return _this._array[_this._indexOfFirst];
+        };
+        /**
+         * Get a data from the end of a linked list.
+         * @returns undefined - if list is empty
+         * @returns `data` - a data that was stored at the end of a list
+         */
+        this.peekLast = function () {
+            if (_this.isEmpty())
+                return undefined;
+            var indexOfLast = (_this._indexOfFirst + _this._size - 1) % _this._capacity;
+            return _this._array[indexOfLast];
+        };
         this._capacity = 2;
         this._size = 0;
         this._indexOfFirst = 0;
@@ -64,7 +86,7 @@ var ResizingArray = /** @class */ (function () {
     };
     /**
      * Add an `item` to the end of an array.
-     * @param data - a `data` to add to the end of an arry.
+     * @param data - a `data` to add to the end of an array.
      * @returns nothing.
      */
     ResizingArray.prototype.push = function (data) {
@@ -74,17 +96,43 @@ var ResizingArray = /** @class */ (function () {
         this._size++;
     };
     /**
-     * Removes a `data` from a beginning of an array.
+     * Removes a `data` from the end of an array.
+     * @returns `data` - an item that was last in an array.
+     */
+    ResizingArray.prototype.pop = function () {
+        if (this.isEmpty())
+            return undefined;
+        var indexOfLast = (this._indexOfFirst + this._size - 1) % this._capacity;
+        var data = this._array[indexOfLast];
+        this._array[indexOfLast] = undefined;
+        this._size--;
+        this._checkSize();
+        return data;
+    };
+    /**
+     * Add an `item` to the beginning of an array.
+     * @param data - a `data` to add to the beginning of an array.
+     * @returns nothing.
+     */
+    ResizingArray.prototype.unshift = function (data) {
+        this._checkSize();
+        var newIndex = (this._indexOfFirst - 1 + this._capacity) % this._capacity;
+        this._array[newIndex] = data;
+        this._indexOfFirst = newIndex;
+        this._size++;
+    };
+    /**
+     * Removes a `data` from the beginning of an array.
      * @returns `data` - an item that was first in an array.
      */
     ResizingArray.prototype.shift = function () {
         if (this.isEmpty())
             return undefined;
-        this._checkSize();
         var data = this._array[this._indexOfFirst];
         this._array[this._indexOfFirst] = undefined;
         this._indexOfFirst = (this._indexOfFirst + 1) % this._capacity;
         this._size--;
+        this._checkSize();
         return data;
     };
     return ResizingArray;

@@ -1,33 +1,23 @@
 "use strict";
 exports.__esModule = true;
 var LinkedList_1 = require("./LinkedList");
+var ResizingArray_1 = require("./ResizingArray");
 /**
- * Stack based on singly linked list
- * LIFO bag.
+ * Stack based (LIFO bag) on singly linked list.
  */
-var StackOnLinkedList = /** @class */ (function () {
+var StackOnSinglyLinkedList = /** @class */ (function () {
     /**
      * Create a new empty stack.
      */
-    function StackOnLinkedList() {
+    function StackOnSinglyLinkedList() {
         var _this = this;
-        /**
-         * Check if a stack is empty.
-         * @returns `true` - stack is empty.
-         * @returns `false` - stack is not empty.
-         */
-        this.isEmpty = function () {
-            return (_this._first == null);
-        };
         /**
          * Push a new `item` at the top of a stack.
          * @param item - data to store in a stack.
          * @returns nothing
          */
         this.push = function (item) {
-            var oldFirst = _this._first;
-            _this._first = new LinkedList_1.Node(item);
-            _this._first.next = oldFirst;
+            _this._items.unshift(item);
         };
         /**
          * Take a top `item` and remove it from a stack.
@@ -35,11 +25,7 @@ var StackOnLinkedList = /** @class */ (function () {
          * @return `undefined` - if a stack is empty.
          */
         this.pop = function () {
-            if (_this.isEmpty)
-                return undefined;
-            var item = _this._first.data;
-            _this._first = _this._first.next;
-            return item;
+            return _this._items.shift();
         };
         /**
          * Take a top `item` without removing it from a stack.
@@ -47,40 +33,35 @@ var StackOnLinkedList = /** @class */ (function () {
          * @return `undefined` - if a stack is empty.
          */
         this.peek = function () {
-            if (_this.isEmpty)
-                return undefined;
-            return _this._first.data;
+            return _this._items.peekFirst();
         };
-        this._first = null;
+        this._items = new LinkedList_1.SinglyLinkedList();
     }
-    return StackOnLinkedList;
+    /**
+     * Returns a size of an array;
+     */
+    StackOnSinglyLinkedList.prototype.length = function () {
+        return this._items.length();
+    };
+    return StackOnSinglyLinkedList;
 }());
-exports.StackOnLinkedList = StackOnLinkedList;
+exports.StackOnSinglyLinkedList = StackOnSinglyLinkedList;
 /**
- * Stack based on array
- * LIFO bag.
+ * Stack based (LIFO bag) on resizing array.
  */
-var StackOnArray = /** @class */ (function () {
+var StackOnResizingArray = /** @class */ (function () {
     /**
      * Create a new empty stack.
      */
-    function StackOnArray() {
+    function StackOnResizingArray() {
         var _this = this;
-        /**
-         * Check if a stack is empty.
-         * @returns `true` - stack is empty.
-         * @returns `false` - stack is not empty.
-         */
-        this.isEmpty = function () {
-            return (_this._n == 0);
-        };
         /**
          * Push a new `item` at the top of a stack.
          * @param item - data to store in a stack.
          * @returns nothing
          */
         this.push = function (item) {
-            _this._items[_this._n++] = item;
+            _this._items.unshift(item);
         };
         /**
          * Take a top `item` and remove it from a stack.
@@ -88,11 +69,7 @@ var StackOnArray = /** @class */ (function () {
          * @return `undefined` - if a stack is empty.
          */
         this.pop = function () {
-            if (_this.isEmpty)
-                return null;
-            var item = _this._items.pop();
-            _this._n--;
-            return item;
+            return _this._items.shift();
         };
         /**
          * Take a top `item` without removing it from a stack.
@@ -100,12 +77,16 @@ var StackOnArray = /** @class */ (function () {
          * @return `undefined` - if a stack is empty.
          */
         this.peek = function () {
-            if (_this.isEmpty)
-                return undefined;
-            return _this._items[_this._n - 1].data;
+            return _this._items.peekFirst();
         };
-        this._n = 0;
+        this._items = new ResizingArray_1.ResizingArray();
     }
-    return StackOnArray;
+    /**
+     * Returns a size of an array;
+     */
+    StackOnResizingArray.prototype.length = function () {
+        return this._items.length();
+    };
+    return StackOnResizingArray;
 }());
-exports.StackOnArray = StackOnArray;
+exports.StackOnResizingArray = StackOnResizingArray;

@@ -20,12 +20,17 @@ exports.Node = Node;
 /**
  * Linked list with single link (one direction iteration).
  */
-exports.SinglyLinkedList = /** @class */ (function () {
+var SinglyLinkedList = /** @class */ (function () {
     /**
      * Create a new linked list with single direction links
      */
-    function class_1() {
+    function SinglyLinkedList() {
         var _this = this;
+        /**
+         * Get a data from the beginning of a linked list.
+         * @returns undefined - if list is empty
+         * @returns `data` - a data that was stored at the beginning of a list
+         */
         this.peekFirst = function () {
             if (_this.isEmpty())
                 return undefined;
@@ -34,7 +39,7 @@ exports.SinglyLinkedList = /** @class */ (function () {
         /**
          * Get a data from the end of a linked list.
          * @returns undefined - if list is empty
-         * @returns `data` - a data that was stored at the end of list
+         * @returns `data` - a data that was stored at the end of a list
          */
         this.peekLast = function () {
             if (_this.isEmpty())
@@ -111,11 +116,21 @@ exports.SinglyLinkedList = /** @class */ (function () {
         this._tail = undefined;
         this._size = 0;
     }
-    class_1.prototype.length = function () {
+    /**
+     * Returns the number of element in a list.
+     */
+    SinglyLinkedList.prototype.length = function () {
         return this._size;
     };
-    class_1.prototype.isEmpty = function () {
+    /**
+     * Check if a list is empty.
+     * @returns `true` - list is empty.
+     * @returns `false` - list is not empty.
+     */
+    SinglyLinkedList.prototype.isEmpty = function () {
         return (this._head === undefined);
     };
-    return class_1;
+    return SinglyLinkedList;
 }());
+exports.SinglyLinkedList = SinglyLinkedList;
+;
