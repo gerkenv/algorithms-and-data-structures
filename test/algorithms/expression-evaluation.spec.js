@@ -3,7 +3,7 @@ const evaluateArithmeticExpression
 
 const expect = require('chai').expect;
 
-describe('EvaluateArithmeticExpression', function() {
+describe('evaluateArithmeticExpression', function() {
   let simpleExpression = '( 1 + 2 )';
   it('should evaluate simple expression, like ' + simpleExpression, () => {
     const result = evaluateArithmeticExpression(simpleExpression);
