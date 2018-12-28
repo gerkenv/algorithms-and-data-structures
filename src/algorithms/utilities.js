@@ -10,3 +10,16 @@ function isSortedInAscendingOrder(array) {
 }
 
 module.exports.isSortedInAscendingOrder = isSortedInAscendingOrder;
+
+/**
+ * Swap values of two array elements.
+ * @param {any} indexA
+ * @param {any} indexB
+ */
+function swap(array, indexA, indexB) {
+  let temporaryValue = array[indexA];
+  array[indexA] = array[indexB];
+  array[indexB] = temporaryValue;
+}
+
+module.exports.swap = swap;
