@@ -8,7 +8,6 @@ const swap = require('../algorithms/utilities').swap;
  * Stable sorting.
  *
  * @param {number[]} array
- * @param {boolean} print - print an `array` at each step of sorting.
  */
 function insertionSort(array, print) {
   if (!array)
@@ -18,7 +17,8 @@ function insertionSort(array, print) {
     for (let j = i; j > 0 && array[j] < array[j-1]; j--) {
       swap(array, j-1, j);
 
-      if (print) console.log(array.join(' '));
+      // comment out
+      // if (true) console.log(array.join(' '));
     }
   }
 }

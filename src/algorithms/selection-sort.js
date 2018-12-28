@@ -8,9 +8,8 @@ const swap = require('../../src/algorithms/utilities').swap;
  * Unstable sorting.
  *
  * @param {number[]} array
- * @param {boolean} print - print an `array` at each step of sorting.
  */
-function selectionSort(array, print) {
+function selectionSort(array) {
   if (!array)
     throw new Error('Array is faulty (`null`, `undefined` or empty).');
 
@@ -21,7 +20,8 @@ function selectionSort(array, print) {
     }
     swap(array, i, min);
 
-    if (print) console.log(array.join(' '));
+    // comment out
+    // if (true) console.log(array.join(' '));
   }
 }
 

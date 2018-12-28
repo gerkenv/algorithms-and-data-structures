@@ -10,7 +10,7 @@ describe('selectionSort', function() {
     for (let i = 0; i < 100; i++) {
       array[i] = Math.floor(100 * Math.random());
     }
-    selectionSort(array, false);
+    selectionSort(array);
     const result = isSortedInAscendingOrder(array);
     expect(result).to.be.true;
   });
