@@ -1,3 +1,62 @@
+
+## Sorting
+
+| Name           | Time complexity | Extra Space | Stable |
+|----------------|-----------------|-------------|--------|
+| Insertion sort | O(n^2)          | O(1)        | yes    |
+| Selection sort | O(n^2)          | O(1)        | no     |
+
+
+
+### Stability
+Is a property of sorting algorithm which defines that all items which have a same sorting key will remain their initial position relative to each other.
+
+#### Hint
+If an algorithm exchanging elements on a long distance, then it may move some item beyond the equal item.
+
+#### Examples
+1. So, if we have an unsorted table...
+
+| digit | letter |
+|-------|--------|
+| 4     | a      |
+| 2     | a      |
+| 5     | a      |
+| 3     | b      |
+| 1     | b      |
+
+... and we sort it first by digit...
+
+| __digit__ | letter |
+|-----------|--------|
+| 1         | b      |
+| 2         | a      |
+| 3         | b      |
+| 4         | a      |
+| 5         | a      |
+
+... and then we sort it by letter...
+
+| digit | __letter__ |
+|-------|------------|
+| 2     | a          |
+| 4     | a          |
+| 5     | a          |
+| 1     | b          |
+| 3     | b          |
+
+... then all digits with the same __letter__ hold the previous sorted order.
+
+2. Otherwise if a sorting algorithm is unstable then elements are mixed in a such way, that previous sorting is discarded (table below).
+
+| digit | __letter__ |
+|-------|------------|
+| 4     | a          |
+| 2     | a          |
+| 5     | a          |
+| 3     | b          |
+| 1     | b          |
+
 ### Count number pairs in array
 ```js
 /**
@@ -119,3 +178,4 @@ There are also cases, when `q[i] - 2` can be less than zero, that is why boundar
 max(0, q[i] - 2)
 ```
 is used.
+
