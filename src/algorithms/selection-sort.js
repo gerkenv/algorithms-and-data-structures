@@ -1,3 +1,5 @@
+const swap = require('../../src/algorithms/utilities').swap;
+
 /**
  * Selection sort
  * Sorts an `array` in ascending order.
@@ -17,9 +19,7 @@ function selectionSort(array, print) {
     for (let j = i+1; j < array.length; j++) {
       if (array[j] < array[min]) min = j;
     }
-    let temp = array[i];
-    array[i] = array[min];
-    array[min] = temp;
+    swap(array, i, min);
 
     if (print) console.log(array.join(' '));
   }
