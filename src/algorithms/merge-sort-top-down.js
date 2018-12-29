@@ -8,9 +8,8 @@ const swap = require('../../src/algorithms/utilities').swap;
  * Stable sorting.
  *
  * @param {number[]} array
- * @param {boolean} print - print an `array` at each step of sorting.
  */
-function mergeSort(array, print) {
+function mergeSort(array) {
   if (!array)
     throw new Error('Array is faulty (`null`, `undefined` or empty).');
 
