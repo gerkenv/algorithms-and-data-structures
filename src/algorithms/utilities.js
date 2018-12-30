@@ -52,3 +52,77 @@ function shuffle(array, descending) {
 }
 
 module.exports.shuffle = shuffle;
+
+/**
+ * Compares values of 3 array elements and returns the index of median (middle) one.
+ * @param {any[]} array
+ * @param {number} indexA
+ * @param {number} indexB
+ * @param {number} indexC
+ * @returns {number} index of median (middle) element.
+ */
+function median3Index(array, indexA, indexB, indexC) {
+  let a = array[indexA];
+  let b = array[indexB];
+  let c = array[indexC];
+  if (a < b) {
+    if (b < c) {
+      return indexB;
+    } else { // c <= b && a < b
+      if (a < c) {
+        return indexC;
+      } else {
+        return indexA;
+      }
+    }
+  } else { // b <= a
+    if (c < b) {
+      return indexB;
+    } else { // b <= c && b <= a
+      if (c < a) {
+        return indexC;
+      }
+      else {
+        return indexA;
+      }
+    }
+  }
+}
+
+module.exports.median3Index = median3Index;
+
+/**
+ * Compares 3 values and returns the median (middle) one.
+ * Restrictions:
+ * - all 3 arguments - `a`, `b` and `c` should have the same type.
+ * @param {any} a
+ * @param {any} b
+ * @param {any} c
+ * @returns {any} median (middle) element.
+ */
+function median3(a, b, c) {
+  if (a < b) {
+    if (b < c) {
+      return b;
+    } else { // c <= b && a < b
+      if (a < c) {
+        return c;
+      } else {
+        return a;
+      }
+    }
+  } else { // b <= a
+    if (c < b) {
+      return b;
+    } else { // b <= c && b <= a
+      if (c < a) {
+        return c;
+      }
+      else {
+        return a;
+      }
+    }
+  }
+}
+
+module.exports.median3 = median3;
