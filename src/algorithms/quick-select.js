@@ -1,4 +1,4 @@
-const partition = require('../../src/algorithms/quick-sort').partition;
+const partition = require('../../src/algorithms/quick-sort-2-way').partition;
 const shuffle = require('../../src/algorithms/utilities').shuffle;
 
 /**
