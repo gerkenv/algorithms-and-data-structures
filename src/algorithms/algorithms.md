@@ -1,11 +1,21 @@
 
+## Analysis Of Algorithms
+### Commonly-used Notations
+| notation  | provides               | example  | used to                   |
+|-----------|------------------------|----------|---------------------------|
+| Tilde     | leading term           | ~ 10 N^2 | provide approximate model |
+| Big Theta | asymptotic growth rate | Θ(N^2)   | classify algorithm        |
+| Big Oh    | Θ(N^2) and smaller     | O(N^2)   | develop upper bound       |
+| Big Omega | Θ(N^2) and larger      | Ω(N^2)   | develop lower bound       |
+
 ## Sorting
 
 | Name           | Time complexity | Extra Space | Stable |
 |----------------|-----------------|-------------|--------|
 | Insertion sort | O(n^2)          | O(1)        | yes    |
 | Selection sort | O(n^2)          | O(1)        | no     |
-
+| Merge sort     | O(n lg(n))      | O(n)        | yes    |
+| Quick sort     | Θ(n lg(n))      | O(1)        | no     |
 
 
 ### Stability
