@@ -1,7 +1,7 @@
 const quickSelect
   = require('../../src/algorithms/quick-select').quickSelect;
 const quickSort
-  = require('../../src/algorithms/quick-sort').quickSort;
+  = require('../../src/algorithms/quick-sort-2-way').quickSort;
 const expect = require('chai').expect;
 const isSortedInAscendingOrder
   = require('../../src/algorithms/utilities').isSortedInAscendingOrder;
