@@ -6,9 +6,9 @@ const shuffle = require('../../src/algorithms/utilities').shuffle;
  * Sorts an `array` in ascending order.
  * Time complexity:
  * - Upper bound O(n^2).
- * - Approximate model ~ n lg(n).
+ * - Asymptotic growth rate Θ(n lg(n)).
  * Extra space is O(1).
- * Stable sorting.
+ * Unstable sorting.
  *
  * @param {number[]} array
  */
