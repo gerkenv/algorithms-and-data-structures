@@ -2,7 +2,7 @@ const swap = require('../../src/algorithms/utilities').swap;
 const shuffle = require('../../src/algorithms/utilities').shuffle;
 
 /**
- * Quick sort
+ * Quick sort (2 way)
  * Sorts an `array` in ascending order.
  * Time complexity:
  * - Upper bound O(n^2).
