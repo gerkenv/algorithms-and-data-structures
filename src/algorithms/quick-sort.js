@@ -29,6 +29,10 @@ function quickSort(array) {
  */
 function sort(array, low, high) {
   if (low >= high) return;
+  // improvement 1 (cutOff ~ [10, 20])
+  // if (high <= low + cutOff - 1) {
+  //   insertionSort(array, low, high);
+  // }
   let middle = partition(array, low, high);
   sort(array, low, middle - 1);
   sort(array, middle + 1, high);
@@ -51,6 +55,10 @@ function sort(array, low, high) {
  * @returns {number} Index of a middle element.
  */
 function partition(array, low, high) {
+  // improvement 2 (median of sample)
+  // const median3Index = require('../../src/algorithms/utilities').median3Index;
+  // let median = median3Index(array, low, (low + (high-low) / 2), high);
+  // swap(array, median, low);
 
   let left = low, right = high + 1;
   while (true) {
