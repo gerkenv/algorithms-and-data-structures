@@ -45,7 +45,7 @@ function sort(array, low, high) {
  * on the right side is bigger than `array[low]`. Then `array[low]` is placed
  * between those sections (in a middle) and its index is returned.
  *
- * An array [lo..hi] is divided so that
+ * So, briefly, the array [lo..hi] is divided so that
  * `array[low, middle - 1]` <= `array[middle]` <= `array[middle + 1, high]`.
  * Index `middle` is returned by the function.
  *
@@ -85,4 +85,5 @@ function partition(array, low, high) {
   return right;
 }
 
+module.exports.partition = partition;
 module.exports.quickSort = quickSort;
