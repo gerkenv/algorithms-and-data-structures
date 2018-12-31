@@ -10,12 +10,14 @@
 
 ## Sorting
 
-| Name           | Time complexity | Extra Space | Stable |
-|----------------|-----------------|-------------|--------|
-| Insertion sort | O(n^2)          | O(1)        | yes    |
-| Selection sort | O(n^2)          | O(1)        | no     |
-| Merge sort     | O(n lg(n))      | O(n)        | yes    |
-| Quick sort     | Θ(n lg(n))      | O(1)        | no     |
+| Name             | Worst  | Average | Best     | Extra Space | Stable | Inplace | Remarks                                               |
+|------------------|--------|---------|----------|-------------|--------|---------|-------------------------------------------------------|
+| Selection sort   | n^2/2  | n^2/2   | n^2/2    | O(1)        | no     | yes     | N exchanges                                           |
+| Insertion sort   | n^2/2  | n^2/4   | n        | O(1)        | yes    | yes     | use for small N or partially ordered                  |
+| Shell sort       | ?      | ?       | n log3 n | O(1)        | no     | yes     | tight code, subquadratic                              |
+| Merge sort       | n lg n | n lg n  | n lg n   | O(n)        | yes    | no      | n lg(n) guarantee                                     |
+| 2-way quick sort | n^2/2  | 2n ln n | n lg n   | O(1)        | no     | yes     | n lg(n) probabilistic guarantee (fastest in practice) |
+| 3-way quick sort | n^2/2  | 2n ln n | n        | O(1)        | no     | yes     | improves quick sort in presence of duplicate keys     |
 
 
 ### Stability
