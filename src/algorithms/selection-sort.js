@@ -19,9 +19,6 @@ function selectionSort(array) {
       if (array[j] < array[min]) min = j;
     }
     swap(array, i, min);
-
-    // comment out
-    // if (true) console.log(array.join(' '));
   }
 }
 

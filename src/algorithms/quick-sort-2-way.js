@@ -74,13 +74,9 @@ function partition(array, low, high) {
     if (left >= right) break;
 
     swap(array, left, right);
-    // comment out
-    // if (true) console.log(array.join(' '));
   }
 
   swap(array, low, right);
-  // comment out
-  // if (true) console.log(array.join(' '));
 
   return right;
 }

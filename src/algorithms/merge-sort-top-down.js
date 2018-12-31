@@ -61,9 +61,6 @@ function merge(array, copy, low, middle, high) {
     else if (right > high)                 array[common] = copy[left++];
     else if (copy[right] < copy[left])     array[common] = copy[right++];
     else /* (copy[right] >= copy[left]) */ array[common] = copy[left++];
-
-    // comment out
-    // if (true) console.log(array.join(' '));
   }
 }
 

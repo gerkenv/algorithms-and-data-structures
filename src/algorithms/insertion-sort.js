@@ -9,16 +9,13 @@ const swap = require('../algorithms/utilities').swap;
  *
  * @param {number[]} array
  */
-function insertionSort(array, print) {
+function insertionSort(array) {
   if (!array)
     throw new Error('Array is faulty (`null`, `undefined` or empty).');
 
   for (let i = 1; i < array.length; i++) {
     for (let j = i; j > 0 && array[j] < array[j-1]; j--) {
       swap(array, j-1, j);
-
-      // comment out
-      // if (true) console.log(array.join(' '));
     }
   }
 }
