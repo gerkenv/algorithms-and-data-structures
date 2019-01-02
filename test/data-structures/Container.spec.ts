@@ -117,3 +117,77 @@ describe('Interface behaviour of `SinglyLinkedList` and `ResizingArray` should m
     });
   });
 });
+
+describe('ResizingArray', function() {
+  describe('#get', () => {
+    it('should retrieve a data from a certain array index', () => {
+      let container = new ResizingArray();
+      for (let i = 0; i < 100; i++) {
+        container.push(i+10);
+      }
+      for (let i = 0; i < 100; i++) {
+        const result = container.get(i);
+        expect(result).to.be.equal(i+10);
+      }
+    });
+  });
+  describe('#set', () => {
+    it('should set a data consequently to a certain array index', () => {
+      let container = new ResizingArray();
+      for (let i = 99; i >= 0; i--) {
+        container.set(i, i+10);
+      }
+      for (let i = 0; i < 100; i++) {
+        const result = container.get(i);
+        expect(result).to.be.equal(i+10);
+      }
+    });
+    it('should set a data with gaps to a certain array index, gaps should be filled with `undefined`', () => {
+      let container = new ResizingArray();
+      for (let i = 0; i < 100; i++) {
+        if (i % 2 == 0) {
+          container.set(i, i+10);
+        }
+      }
+      for (let i = 0; i < 100; i++) {
+        const result = container.get(i);
+        if (i % 2 == 0) {
+          expect(result).to.be.equal(i+10);
+        } else {
+          expect(result).to.be.undefined;
+        }
+      }
+    });
+  });
+  describe('#exchange', () => {
+    it('should swap array elements', () => {
+      let container = new ResizingArray();
+      for (let i = 0; i < 100; i++) {
+        container.push(i+10);
+      }
+      for (let i = 0; i < 50; i++) {
+        container.exchange(i, 99 - i);
+      }
+      for (let i = 0; i < 100; i++) {
+        const result = container.get(99-i);
+        expect(result).to.be.equal(i+10);
+      }
+    });
+  });
+  describe('#less', () => {
+    it('should compare array elements', () => {
+      let container = new ResizingArray();
+      for (let i = 0; i < 100; i++) {
+        container.push(i+10);
+      }
+      for (let i = 1; i < 100; i++) {
+        const result1 = container.less(i-1, i);
+        expect(result1).to.be.true;
+        const result2 = container.less(i, i-1);
+        expect(result2).to.be.false;
+        const result3 = container.less(i, i);
+        expect(result3).to.be.false;
+      }
+    });
+  });
+});

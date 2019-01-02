@@ -1,4 +1,3 @@
-
 export class ResizingArray {
   private _capacity : number;
   private _size : number;
@@ -74,7 +73,7 @@ export class ResizingArray {
    * @returns undefined - if list is empty
    * @returns `data` - a data that was stored at the beginning of a list
    */
-  peekFirst = () : any => {
+  peekFirst () : any {
     if (this.isEmpty()) return undefined;
     return this._array[this._indexOfFirst];
   }
@@ -84,7 +83,7 @@ export class ResizingArray {
    * @returns undefined - if list is empty
    * @returns `data` - a data that was stored at the end of a list
    */
-  peekLast = () : any => {
+  peekLast () : any {
     if (this.isEmpty()) return undefined;
     let indexOfLast = (this._indexOfFirst + this._size - 1) % this._capacity;
     return this._array[indexOfLast];
@@ -143,4 +142,75 @@ export class ResizingArray {
     return data;
   }
 
+  /**
+   * Get a data from a certain `index`.
+   * @param index - a certain positive `index` in array (starting from 0).
+   * @returns undefined - if `index` is not presented in array.
+   * @returns `data` - a data that was stored at certain `index`.
+   */
+  get (index : number) : any {
+    if (index == null) return undefined;
+    if ((index < 0) || (index >= this._size)) return undefined;
+    let circularIndex = (this._indexOfFirst + index) % this._capacity;
+    return this._array[circularIndex];
+  }
+
+  /**
+   * Set a data to a certain `index`.
+   * @param index - a certain positive `index` in array (starting from 0).
+   * @param data - a data that will be set to a certain `index`.
+   */
+  set(index : number, data : any) : void {
+    if (index == null) return;
+    if (index < 0) return;
+
+    if (index >= this._capacity) {
+      let newCapacity = this._capacity;
+      while (index + 1 > newCapacity) { newCapacity *= 2;}
+      this._resizeArray(newCapacity);
+    }
+    // if (index >= this._size) {
+    //   this._size = index + 1;
+    // }
+    while (index > this._size) {
+      let undefinedIndex = (this._indexOfFirst + this._size) % this._capacity;
+      this._array[undefinedIndex] = undefined;
+      this._size++;
+    }
+    let circularIndex = (this._indexOfFirst + index) % this._capacity;
+    this._array[circularIndex] = data;
+    this._size++;
+  }
+
+  /**
+   * Exchange the position (indexes) of array elements.
+   * @param indexA - an index of element A
+   * @param indexB - an index of element B
+   * @throws `Error` if some index is out of valid range [0, this.length()].
+   */
+  exchange(indexA : number, indexB : number) {
+    if ((indexA < 0) || (indexA >= this._size))
+      throw new Error(`Index A is out of range [0, ${this._size - 1}]`);
+    if ((indexB < 0) || (indexB >= this._size))
+      throw new Error(`Index B is out of range [0, ${this._size - 1}]`);
+
+    let value = this._array[indexA];
+    this._array[indexA] = this._array[indexB];
+    this._array[indexB] = value;
+  }
+
+  /**
+   * Check if element A is less than element B in array.
+   * @param indexA - an index of element A
+   * @param indexB - an index of element B
+   * @throws `Error` if some index is out of valid range [0, this.length()].
+   */
+  less(indexA : number, indexB : number) {
+    if ((indexA < 0) || (indexA >= this._size))
+      throw new Error(`Index A is out of range [0, ${this._size - 1}]`);
+    if ((indexB < 0) || (indexB >= this._size))
+      throw new Error(`Index B is out of range [0, ${this._size - 1}]`);
+
+      return this._array[indexA] < this._array[indexB];
+  }
 }
