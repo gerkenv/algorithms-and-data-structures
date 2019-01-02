@@ -69,6 +69,27 @@ If an algorithm exchanging elements on a long distance, then it may move some it
 | 3     | b          |
 | 1     | b          |
 
+
+## Data Structures
+### Priority Queue vs. Binary Heap
+If we need to process a huge amount of data that we cannot store and we need only to keep track of the maximal (minimal) M elements, then we can try to use the priority queue that is able to remove (dequeue) the minimal element from itself.
+
+We can build such queue on top of array or linked list, in both cases we end up choosing between operation costs.
+
+| implementation        | insert | deleteMin | getMin |
+|-----------------------|--------|-----------|--------|
+| unordered array       | 1      | N         | N      |
+| unordered linked list | 1      | N         | N      |
+| ordered array         | N      | 1         | 1      |
+| ordered linked list   | N      | 1         | 1      |
+
+But actually we can use binary heap.
+
+| implementation        | insert | deleteMin | getMin |
+|-----------------------|--------|-----------|--------|
+| unordered array       | lg N   | lg N      | lg N   |
+
+
 ### Count number pairs in array
 ```js
 /**
