@@ -89,6 +89,14 @@ But actually we can use binary heap.
 |-----------------------|--------|-----------|--------|
 | unordered array       | lg N   | lg N      | lg N   |
 
+### Heap Structure
+There are 2 ways to implement a heap based on an array.
+| implementation        | left child | right child | parent      |
+|-----------------------|------------|-------------|-------------|
+| 0 - based array       | i * 2 + 1  | i * 2 + 2   | (i - 1) / 2 |
+| 1 - based array       | i * 2      | i * 2 + 1   | i / 2       |
+
+
 
 ### Count number pairs in array
 ```js
