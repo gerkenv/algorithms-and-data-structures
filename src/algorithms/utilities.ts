@@ -1,3 +1,9 @@
+export type Comparator = (a : any, b : any) => boolean;
+
+export function less(a : any, b : any) : boolean {
+  return a < b;
+}
+
 /**
  * checks if an `array` is sorted in ascending order.
  * @param array
