@@ -1,4 +1,4 @@
-const swap = require('../algorithms/utilities').swap;
+const swap = require('../../dist/algorithms/utilities').swap;
 
 /**
  * Insertion sort

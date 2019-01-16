@@ -1,4 +1,4 @@
-import { swap, Comparator } from "../../src/algorithms/utilities";
+import { swap, Comparator } from "../algorithms/utilities";
 
 /**
  * In-place heap-sort.
@@ -54,8 +54,8 @@ function sink(
 
 /**
  * Check if `a` is less than `b`.
- * @param a 
- * @param b 
+ * @param a
+ * @param b
  */
 function less(a : any, b : any) : boolean {
   return a < b;

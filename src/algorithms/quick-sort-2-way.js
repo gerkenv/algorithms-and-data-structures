@@ -1,5 +1,5 @@
-const swap = require('../../src/algorithms/utilities').swap;
-const shuffle = require('../../src/algorithms/utilities').shuffle;
+const swap = require('../../dist/algorithms/utilities').swap;
+const shuffle = require('../../dist/algorithms/utilities').shuffle;
 
 /**
  * Quick sort (2 way)
