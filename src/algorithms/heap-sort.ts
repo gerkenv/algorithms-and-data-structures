@@ -1,4 +1,4 @@
-import { swap, Comparator, less } from "../../src/algorithms/utilities";
+import { swap, Comparator } from "../../src/algorithms/utilities";
 
 /**
  * In-place heap-sort.
@@ -15,7 +15,7 @@ export function heapSort( array : number[], compare = less ) {
   for (let k = ~~((indexOfLast - 1) / 2); k >= 0; k--) {
     sink(array, k, indexOfLast, compare);
   }
-  while(indexOfLast > 1) {
+  while(indexOfLast > 0) {
     swap(array, 0, indexOfLast--);
     sink(array, 0, indexOfLast, compare);
   }
@@ -52,3 +52,11 @@ function sink(
   }
 }
 
+/**
+ * Check if `a` is less than `b`.
+ * @param a 
+ * @param b 
+ */
+function less(a : any, b : any) : boolean {
+  return a < b;
+}
