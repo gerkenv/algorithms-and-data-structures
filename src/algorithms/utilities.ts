@@ -2,10 +2,10 @@ export type Comparator = (a : any, b : any) => boolean;
 
 /**
  * Check if `a` is less than `b`.
- * @param a 
- * @param b 
+ * @param a
+ * @param b
  */
-export function less(a : any, b : any) : boolean {
+export function lessOrEqual(a : any, b : any) : boolean {
   return a < b;
 }
 
@@ -23,11 +23,11 @@ export function isSortedInAscendingOrder(array : any[]) {
 /**
  * Checks if an `array` is truthfully-compared with given `compare` callback.
  * @param array - an `array` to check.
- * @param compare - a callback for an order check. If omitted default 
- * callback is `less`, so it will be checked if an array is sorted in
- * ascending order.
+ * @param compare - a callback for an order check. If omitted default
+ * callback is `lessOrEqual`, so it will be checked if an array is
+ * sorted in ascending order.
  */
-export function isSorted(array : any[], compare = less) : boolean {
+export function isSorted(array : any[], compare = lessOrEqual) : boolean {
   for (let i = 1; i < array.length; i++) {
     if (!compare(array[i-1], array[i])) return false;
   }

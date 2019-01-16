@@ -5,10 +5,10 @@ exports.__esModule = true;
  * @param a
  * @param b
  */
-function less(a, b) {
-    return a < b;
+function lessOrEqual(a, b) {
+    return a <= b;
 }
-exports.less = less;
+exports.lessOrEqual = lessOrEqual;
 /**
  * checks if an `array` is sorted in ascending order.
  * @param array
@@ -25,11 +25,11 @@ exports.isSortedInAscendingOrder = isSortedInAscendingOrder;
  * Checks if an `array` is truthfully-compared with given `compare` callback.
  * @param array - an `array` to check.
  * @param compare - a callback for an order check. If omitted default
- * callback is `less`, so it will be checked if an array is sorted in
- * ascending order.
+ * callback is `lessOrEqual`, so it will be checked if an array is
+ * sorted in ascending order.
  */
 function isSorted(array, compare) {
-    if (compare === void 0) { compare = less; }
+    if (compare === void 0) { compare = lessOrEqual; }
     for (var i = 1; i < array.length; i++) {
         if (!compare(array[i - 1], array[i]))
             return false;
