@@ -2,7 +2,7 @@ const shellSort
   = require('../../src/algorithms/shell-sort').shellSort;
 const expect = require('chai').expect;
 const isSortedInAscendingOrder
-  = require('../../src/algorithms/utilities').isSortedInAscendingOrder;
+  = require('../../dist/algorithms/utilities').isSortedInAscendingOrder;
 
 describe('shellSort', function() {
   it('should sort a random array in ascending order', () => {

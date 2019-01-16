@@ -2,7 +2,7 @@ const mergeSort
   = require('../../src/algorithms/merge-sort-top-down').mergeSort;
 const expect = require('chai').expect;
 const isSortedInAscendingOrder
-  = require('../../src/algorithms/utilities').isSortedInAscendingOrder;
+  = require('../../dist/algorithms/utilities').isSortedInAscendingOrder;
 
 describe('mergeSort (top-down)', function() {
   it('should sort a random array in ascending order', () => {

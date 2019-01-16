@@ -1,6 +1,6 @@
 import { BinaryHeapMax } from '../../src/data-structures/PriorityQueue';
 import { expect } from 'chai';
-import { isSortedInAscendingOrder } from '../../src/algorithms/utilities';
+import { isSortedInAscendingOrder } from '../../dist/algorithms/utilities';
 
 describe('Interface behavior of priority queues should match.', function() {
   let classNames = ['BinaryHeapMax'];

@@ -1,5 +1,5 @@
 const partition = require('../../src/algorithms/quick-sort-2-way').partition;
-const shuffle = require('../../src/algorithms/utilities').shuffle;
+const shuffle = require('../../dist/algorithms/utilities').shuffle;
 
 /**
  * Select the n-th element from array (ascending order)

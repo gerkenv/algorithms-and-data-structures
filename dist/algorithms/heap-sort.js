@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-var utilities_1 = require("../../src/algorithms/utilities");
+var utilities_1 = require("../algorithms/utilities");
 /**
  * In-place heap-sort.
  * @param array - an `array` to sort.

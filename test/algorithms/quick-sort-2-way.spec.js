@@ -2,7 +2,7 @@ const quickSort
   = require('../../src/algorithms/quick-sort-2-way').quickSort;
 const expect = require('chai').expect;
 const isSortedInAscendingOrder
-  = require('../../src/algorithms/utilities').isSortedInAscendingOrder;
+  = require('../../dist/algorithms/utilities').isSortedInAscendingOrder;
 
 describe('quickSort (2-way)', function() {
   it('should sort a random array in ascending order', () => {

@@ -2,7 +2,7 @@ const selectionSort
   = require('../../src/algorithms/selection-sort').selectionSort;
 const expect = require('chai').expect;
 const isSortedInAscendingOrder
-  = require('../../src/algorithms/utilities').isSortedInAscendingOrder;
+  = require('../../dist/algorithms/utilities').isSortedInAscendingOrder;
 
 describe('selectionSort', function() {
   it('should sort a random array in ascending order', () => {

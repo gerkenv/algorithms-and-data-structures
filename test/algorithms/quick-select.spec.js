@@ -4,7 +4,7 @@ const quickSort
   = require('../../src/algorithms/quick-sort-2-way').quickSort;
 const expect = require('chai').expect;
 const isSortedInAscendingOrder
-  = require('../../src/algorithms/utilities').isSortedInAscendingOrder;
+  = require('../../dist/algorithms/utilities').isSortedInAscendingOrder;
 
 describe('quickSelect', function() {
   it('should get n-th lowest element from array as if it would be sorted in ascending order', () => {

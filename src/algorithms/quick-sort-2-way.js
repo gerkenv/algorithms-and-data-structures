@@ -1,5 +1,5 @@
-const swap = require('../../src/algorithms/utilities').swap;
-const shuffle = require('../../src/algorithms/utilities').shuffle;
+const swap = require('../../dist/algorithms/utilities').swap;
+const shuffle = require('../../dist/algorithms/utilities').shuffle;
 
 /**
  * Quick sort (2 way)
@@ -56,7 +56,7 @@ function sort(array, low, high) {
  */
 function partition(array, low, high) {
   // improvement 2 (median of sample)
-  // const median3Index = require('../../src/algorithms/utilities').median3Index;
+  // const median3Index = require('../../dist/algorithms/utilities').median3Index;
   // let median = median3Index(array, low, (low + (high-low) / 2), high);
   // swap(array, median, low);
 

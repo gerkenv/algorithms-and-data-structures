@@ -2,7 +2,7 @@ const insertionSort
   = require('../../src/algorithms/insertion-sort').insertionSort;
 const expect = require('chai').expect;
 const isSortedInAscendingOrder
-  = require('../../src/algorithms/utilities').isSortedInAscendingOrder;
+  = require('../../dist/algorithms/utilities').isSortedInAscendingOrder;
 
 describe('insertionSort', function() {
   it('should sort a random array in ascending order', () => {
