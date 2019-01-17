@@ -1,12 +1,12 @@
 export type Comparator = (a : any, b : any) => boolean;
 
 /**
- * Check if `a` is less than `b`.
+ * Check if `a` is less or equal to `b`.
  * @param a
  * @param b
  */
 export function lessOrEqual(a : any, b : any) : boolean {
-  return a < b;
+  return a <= b;
 }
 
 /**

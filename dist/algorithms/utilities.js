@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 /**
- * Check if `a` is less than `b`.
+ * Check if `a` is less or equal to `b`.
  * @param a
  * @param b
  */
