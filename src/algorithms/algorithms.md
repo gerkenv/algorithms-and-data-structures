@@ -90,12 +90,21 @@ But actually we can use binary heap.
 |-----------------------|--------|-----------|--------|
 | unordered array       | lg N   | lg N      | lg N   |
 
-### Heap Structure
+#### Heap Structure
 There are 2 ways to implement a heap based on an array.
 | implementation        | left child | right child | parent      |
 |-----------------------|------------|-------------|-------------|
 | 0 - based array       | i * 2 + 1  | i * 2 + 2   | (i - 1) / 2 |
 | 1 - based array       | i * 2      | i * 2 + 1   | i / 2       |
+
+### Symbol Tables
+
+| implementation                     | guarantee search | guarantee insert | avg. search | avg. insert | ordered ops. | key ops.    |
+|------------------------------------|------------------|------------------|-------------|-------------|--------------|-------------|
+| sequential search (unordered list) | N                | N                | N/2         | N           | no           | equals()    |
+| binary search (ordered array)      | lg N             | N                | lg N        | N/2         | yes          | compareTo() |
+| binary search tree (BST)           | N                | N                | 1.39 lg N   | 1.39 lg N   |              | compareTo() |
+
 
 
 
