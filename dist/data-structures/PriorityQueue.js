@@ -94,13 +94,20 @@ var BinaryHeapMax = /** @class */ (function () {
 }());
 exports.BinaryHeapMax = BinaryHeapMax;
 /**
- * Priority queue holding maximal element at the top.
- * Based on binary heap.
+ * Priority queue holding maximal element at the top. \
+ * Based on binary heap. \
  * 0 - based implementation.
  */
 var BinaryHeap = /** @class */ (function () {
     /**
-     * Create a new empty heap from index 1.
+     * Create a new empty heap from index 0.
+     * @param comparator - a callback to compare a child with a parent.
+     * `a` represents child, `b` represents parent. The `top` element is
+     * a parent that fulfills a compare condition better then any other heap
+     * element. \
+     * Example: \
+     * So if comparator is `(a, b) => (a < b)` then a `top` element is a
+     * largest element of a heap.
      */
     function BinaryHeap(comparator) {
         if (comparator === void 0) { comparator = less; }

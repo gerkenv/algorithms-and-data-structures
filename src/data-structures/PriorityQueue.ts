@@ -107,15 +107,22 @@ export class BinaryHeapMax implements IPriorityQueue{
 
 
 /**
- * Priority queue holding maximal element at the top.
- * Based on binary heap.
+ * Priority queue holding maximal element at the top. \
+ * Based on binary heap. \
  * 0 - based implementation.
  */
 export class BinaryHeap implements IPriorityQueue{
   private _items : ResizingArray;
   private _comparator : Comparator;
   /**
-   * Create a new empty heap from index 1.
+   * Create a new empty heap from index 0.
+   * @param comparator - a callback to compare a child with a parent.
+   * `a` represents child, `b` represents parent. The `top` element is
+   * a parent that fulfills a compare condition better then any other heap
+   * element. \
+   * Example: \
+   * So if comparator is `(a, b) => (a < b)` then a `top` element is a
+   * largest element of a heap.
    */
   constructor(comparator = less) {
     this._items = new ResizingArray();
