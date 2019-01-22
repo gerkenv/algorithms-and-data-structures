@@ -186,7 +186,7 @@ export class ResizingArray {
    * Exchange the position (indexes) of array elements.
    * @param indexA - an index of element A
    * @param indexB - an index of element B
-   * @throws `Error` if some index is out of valid range [0, this.length()].
+   * @throws {Error} if some index is out of valid range [0, this.length()].
    */
   exchange(indexA : number, indexB : number) {
     if ((indexA < 0) || (indexA >= this._size))
@@ -203,7 +203,7 @@ export class ResizingArray {
    * Check if element A is less than element B in array.
    * @param indexA - an index of element A
    * @param indexB - an index of element B
-   * @throws `Error` if some index is out of valid range [0, this.length()].
+   * @throws {Error} if some index is out of valid range [0, this.length()].
    */
   less(indexA : number, indexB : number) {
     if ((indexA < 0) || (indexA >= this._size))
