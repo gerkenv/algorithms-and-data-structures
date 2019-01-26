@@ -1,5 +1,6 @@
 import { ResizingArray } from './ResizingArray';
 import { Comparator } from '../algorithms/utilities';
+import { SinglyLinkedList } from './LinkedList';
 
 
 
@@ -285,6 +286,47 @@ export class BinarySearchTree<Key> {
     if      (key > node.key) return this._ceiling2(node.right, key, ceiling);
     else if (key < node.key) return this._ceiling2(node.left, key, node.key);
     else                     return node.key;
+  }
+
+  /**
+   * Get the `rank + 1`-th smallest key from the symbol table.
+   * @param rank - a position of an element. `rank` = `0` corresponds to
+   * a smallest element in a tree.
+   * @return the smallest key in the symbol table greater than or equal to `key`.
+   * @throws {Error} If a tree is empty.
+   * @throws {Error} If `rank` is ouf valid range.
+   */
+  select(rank : number) : Key {
+    if (rank < 0 || rank >= this.size())
+      throw new Error(`Rank is out of range [0, ${this.size()-1}]`);
+    if (this.isEmpty()) throw new Error("Underflow error - a tree is empty.");
+    let node = this._select(this._root, rank);
+    return node.key;
+  }
+  _select(node : Node<Key>, rank : number) : Node<Key> {
+    if (node == null) return null;
+    let sizeOfLeft = this._size(node.left);
+    if      (sizeOfLeft > rank)
+      return this._select(node.left, rank);
+    else if (sizeOfLeft < rank)
+      return this._select(node.right, rank - sizeOfLeft - 1)
+    else
+      return node;
+  }
+
+
+  rank(key : Key) : number {
+    if (key == undefined) throw new Error('Key is null or undefined');
+    return this._rank(this._root, key);
+  }
+  _rank(node : Node<Key>, key : Key) : number {
+    if (node == undefined) return 0;
+    if      (key < node.key)
+      return this._rank(node.left, key);
+    else if (key > node.key)
+      return 1 + this._size(node.left) + this._rank(node.right, key);
+    else
+      return this._size(node.left);
   }
 
 
