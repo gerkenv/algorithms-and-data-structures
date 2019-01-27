@@ -1,3 +1,38 @@
+/**
+ * Count pairs of duplicates in array using `Set` object.
+ */
+function countDuplicatePairs(array) {
+  let pairsCounter = 0;
+  let elementSet = new Set();         // O(1)
+  array.forEach(element => {          // O(n)
+    if (elementSet.has(element)) {      // O(1)
+      elementSet.delete(element);         // O(1)
+      pairsCounter++;                     // O(1)
+    } else {
+      elementSet.add(element);            // O(1)
+    }
+  });
+  return pairsCounter;
+}
+
+/**
+ * Count pairs of duplicates in array using `Object`.
+ */
+function countDuplicatePairs(array) {
+  let pairsCounter = 0;
+  let obj = new Object();
+  array.forEach(element => {
+    if (obj[element]) {
+      obj[element] = undefined;
+      pairsCounter++;
+    } else {
+      obj[element] = true;
+    }
+  });
+  return pairsCounter;
+}
+
+
 // /////////////////////////////////////////
 // Minimum Bribes
 
@@ -97,3 +132,38 @@ function minimumSwaps(array) {
 // for (let i=0; i<10; i++) { array[i] = 10-i; }
 // let swaps = minimumSwaps(array);
 // console.log(swaps);
+
+// /////////////////////////////////////////
+// Array Manipulation
+
+// https://www.hackerrank.com/challenges/crush/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
+
+/**
+ * Function adds an offset `a` to all element in array between `b` and `c-1`
+ * and returns the maximum of an array.
+ * @param {number} n - size of an array.
+ * @param {*} queries - in format `[a,b,c]`.
+ */
+function arrayManipulation(n, queries) {
+  // Initialize array with zeros
+  let arr = Array(n+1).fill(0);
+
+  queries.forEach((element, index) => {
+    // set positive offset to a first index
+    arr[element[0]] += element[2];
+    // check if an element after a last index exists
+    if (element[1] + 1 <= n) {
+      // set negative offset to an element after a last index
+      arr[element[1] + 1] -= element[2];
+    }
+  });
+  let max = 0;
+  let value = 0;
+  arr.forEach(element => {
+    // add current offset to the value
+    value += element;
+    if (value > max) max = value;
+  });
+
+  return max;
+}
