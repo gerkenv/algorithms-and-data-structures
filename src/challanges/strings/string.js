@@ -1,11 +1,11 @@
 // /////////////////////////////////////////
-// Count The Occurrence Of A Character In A String
+// Count The Occurrence Of `A` Character In A String
 
 // https://stackoverflow.com/questions/881085/count-the-number-of-occurrences-of-a-character-in-a-string-in-javascript)
 
-(function(){
-  let matches = (s.match(/a/g) || []).length;
-})();
+function countsOccurrencesOfCharA(s) {
+  return matches = (s.match(/a/g) || []).length;
+}
 
 // /////////////////////////////////////////
 // Iterate Through String
