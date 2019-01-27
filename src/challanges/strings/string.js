@@ -27,7 +27,7 @@
   });
 
   // With ES5 (fastest)
-  let l = text.length - 1;
+  let l = text.length;
   while(l--) {
     console.log(text.charAt(index));
   }
@@ -98,4 +98,25 @@ class Histogram {
     if (this.map[key]) this.map[key]--;
     else this.map[key] = -1;
   }
+}
+
+// /////////////////////////////////////////
+// Alternating Characters
+
+// https://www.hackerrank.com/challenges/alternating-characters/problem?h_l=interview&isFullScreen=false&playlist_slugs%5B%5D%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D%5B%5D=strings
+
+/**
+ * Function counts how many pairs of equal adjacent characters
+ * there are in a string.
+ * @param {string} s
+ */
+function countPairsOfEqualAdjucentCharacters(s) {
+  let l = s.length;
+  if ((l == 0) || (l == 1)) return 0;
+  l -= 1;
+  let duplicates = 0;
+  while (l--) {
+      if (s.charAt(l) == s.charAt(l + 1)) duplicates++;
+  }
+  return duplicates;
 }
