@@ -122,6 +122,84 @@ function countPairsOfEqualAdjucentCharacters(s) {
 }
 
 // /////////////////////////////////////////
+// Check if string contain char with the same frequencies
+
+// https://www.hackerrank.com/challenges/sherlock-and-valid-string/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings
+
+/**
+ * Function check if a string fulfils the condition
+ * "string contains a same amount of different characters"
+ *
+ * 2 violation is allowed to be
+ * - single character may be presented once.
+ * - some character may be presented one time more than all others.
+ *
+ * @param {string} s
+ */
+function isStringValidWithViolation(s) {
+  let hist = new HistogramOfHistogram();
+
+  for (let i = s.length; i--;) {
+      hist.incFreq(s.charAt(i));
+  }
+  let freqs = [];
+  for (let freq in hist.freqsOfFreqs) {
+      freqs.push(freq);
+  }
+  if (freqs.length == 1) return 'YES';
+  else if (freqs.length > 2) return 'NO';
+  else {
+      let alone;
+      if (hist.freqsOfFreqs[freqs[0]] == 1) {
+          alone = 0;
+      } else if (hist.freqsOfFreqs[freqs[1]] == 1) {
+          alone = 1;
+      } else {
+          return 'NO';
+      }
+      if (Math.abs(freqs[0] - freqs[1]) == 1) return 'YES';
+      if (freqs[alone] == 1) return 'YES';
+      return 'NO';
+  }
+}
+
+class HistogramOfHistogram {
+  constructor() {
+      this.freqs = {}; // occurrences of a key (char)
+      this.freqsOfFreqs = {}; // occurencies of occurrences
+  }
+  incFreq(key) {
+      if (this.freqs[key]) {
+          this.decFreqOfFreq(this.freqs[key]);
+          this.freqs[key]++;
+          this.incFreqOfFreq(this.freqs[key]);
+      } else {
+          this.freqs[key] = 1;
+          this.incFreqOfFreq(1);
+      }
+  }
+  decFreq(key) {
+      if (this.freqs[key] == 1) {
+          this.decFreqOfFreq(1);
+          delete this.freqs[key];
+      }
+      else if (this.freqs[key]) {
+          this.decFreqOfFreq(this.freqs[key]);
+          this.freqs[key]--;
+          this.incFreqOfFreq(this.freqs[key]);
+      }
+  }
+  incFreqOfFreq(key) {
+      if (this.freqsOfFreqs[key]) this.freqsOfFreqs[key]++;
+      else this.freqsOfFreqs[key] = 1;
+  }
+  decFreqOfFreq(key) {
+      if (this.freqsOfFreqs[key] == 1) delete this.freqsOfFreqs[key];
+      else if (this.freqsOfFreqs[key]) this.freqsOfFreqs[key]--;
+  }
+}
+
+// /////////////////////////////////////////
 // Count possible palindroms
 
 // https://www.hackerrank.com/challenges/special-palindrome-again/problem?h_l=interview&isFullScreen=false&playlist_slugs%5B%5D%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D%5B%5D=strings
