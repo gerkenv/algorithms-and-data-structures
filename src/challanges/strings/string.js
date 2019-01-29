@@ -120,3 +120,62 @@ function countPairsOfEqualAdjucentCharacters(s) {
   }
   return duplicates;
 }
+
+// /////////////////////////////////////////
+// Count possible palindroms
+
+// https://www.hackerrank.com/challenges/special-palindrome-again/problem?h_l=interview&isFullScreen=false&playlist_slugs%5B%5D%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D%5B%5D=strings
+
+/**
+ * Function searches all possible palindroms in a string
+ * and returns their amount.
+ * Palindrom is
+ * - `a`, `aaaaa` - string containing the same characters.
+ * - `aca`, `ddadd` - string containing the same characters with
+ * one exception in a middle.
+ *
+ * @param {string} s - string to check.
+ * @returns {number} Count of possible palindroms.
+ */
+function countSubstringPalindroms(s) {
+  if ((s.length == 1) || (s.length == 0)) return s.length;
+  let count = 0;
+
+  // fill up character occurrences
+  let i = s.length - 1;
+  let pairs = [new Pair(s[i], 1), undefined, undefined];
+  while (i--) {
+      if (pairs[0].key == s[i]) {
+          pairs[0].value++;
+      } else {
+          // count up possible palindroms for a compressed char0
+          // if a string is `aaa` then it has 3 `a`, 2 `aa` and 1 `aaa`
+          // substring, so if string.length is 3 then amount of polindroms
+          // is `1 + 2 + 3`, same like a sum from 1 up to 3.
+          // Any sequence from 1 to N has sum of `N * (N + 1) / 2`.
+          count += pairs[0].value * (pairs[0].value + 1) / 2;
+          // check if strings like `aba` (with extra character in a middle)
+          // are presented
+          if (pairs[2]) {
+              if ((pairs[0].key == pairs[2].key) && (pairs[1].value == 1)) {
+                  count += Math.min(pairs[0].value, pairs[2].value);
+              }
+          }
+          // save old and new character
+          pairs[2] = pairs[1];
+          pairs[1] = pairs[0];
+          pairs[0] = new Pair(s[i], 1);
+      }
+  }
+  // count up possible palindroms for a compressed char (pair[0])
+  count += pairs[0].value * (pairs[0].value + 1) / 2;
+  // check if strings like `aba` (with extra character in a middle)
+  // are presented
+  if (pairs[2]) {
+      if ((pairs[0].key == pairs[2].key) && (pairs[1].value == 1)) {
+          count += Math.min(pairs[0].value, pairs[2].value);
+      }
+  }
+
+  return count;
+}
