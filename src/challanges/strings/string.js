@@ -257,3 +257,102 @@ function countSubstringPalindroms(s) {
 
   return count;
 }
+
+// /////////////////////////////////////////
+// Longest common subsequence
+
+// https://www.hackerrank.com/challenges/common-child/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings
+
+/**
+ * Function returns the length of a longest common subsequence (LCS)
+ * of 2 strings.
+ * https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
+ *
+ * Example:
+ * LCS of 'ABCD' and 'BDAC' are `BD` && `AC`.
+ * @param {string} s1
+ * @param {string} s2
+ * @returns {number} Length of a LCS.
+ */
+function lengthOfLongestCommonSubsequence(s1, s2) {
+  let table = new Array(s1.length + 1).fill()
+      .map(() => new Array(s2.length + 1).fill(0));
+
+  for (let i = 1; i <= s1.length; i++) {
+      for (let j = 1; j <= s2.length; j++) {
+          if (s1[i-1] == s2[j-1]) {
+              table[i][j] = table[i - 1][j - 1] + 1;
+          } else {
+              table[i][j] = Math.max(table[i][j - 1], table[i - 1][j]);
+          }
+      }
+  }
+  return table[s1.length][s2.length];
+}
+
+/**
+ * Function returns the length of a longest common subsequence (LCS)
+ * of 2 strings.
+ * https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
+ *
+ * Example:
+ * LCS of 'ABCD' and 'BDAC' are `BD` && `AC`.
+ *
+ * Optimization:
+ * Function uses 2D Array with only 2 rows and `s2.length` columns.
+ *
+ * @param {string} s1
+ * @param {string} s2
+ * @returns {number} Length of a LCS.
+ */
+function lengthOfLongestCommonSubsequenceOptimized(s1, s2) {
+  let table = new Array(2).fill()
+      .map(() => new Array(s2.length + 1).fill(0));
+
+  for (let i = 1; i <= s1.length; i++) {
+      let row = i % 2;
+      let oldRow = (i - 1) % 2;
+      for (let j = 1; j <= s2.length; j++) {
+          if (s1[i-1] == s2[j-1]) {
+              table[row][j] = table[oldRow][j - 1] + 1;
+          } else {
+              table[row][j] = Math.max(table[row][j - 1], table[oldRow][j]);
+          }
+      }
+  }
+  return table[s1.length % 2][s2.length];
+}
+
+/**
+ * Function returns a longest common subsequence (LCS)
+ * of 2 strings.
+ * https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
+ *
+ * Example:
+ * LCS of 'ABCD' and 'BDAC' are `BD` && `AC`.
+ * @param {string} s1
+ * @param {string} s2
+ * @returns {string} LCS.
+ */
+function longestCommonSubsequence(s1, s2) {
+  let table = new Array(2).fill()
+      .map(() => new Array(s2.length + 1).fill(""));
+
+  for (let i = 1; i <= s1.length; i++) {
+      let row = i % 2;
+      let oldRow = (i - 1) % 2;
+      for (let j = 1; j <= s2.length; j++) {
+          if (s1[i-1] == s2[j-1]) {
+              table[row][j] = table[oldRow][j - 1] + s2[j-1];
+          } else {
+              if (table[row][j - 1].length > table[oldRow][j].length) {
+                  table[row][j] = table[row][j - 1];
+              } else {
+                  table[row][j] = table[oldRow][j];
+              }
+          }
+      }
+  }
+  return table[s1.length % 2][s2.length];
+}
+
