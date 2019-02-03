@@ -40,7 +40,7 @@ function sink(
   while(2 * index + 1 <= indexOfLast) {
     // get left child
     let child = 2 * index + 1;
-    // check if right child is presented and less than left one
+    // check if right child is presented and it is greater than left one
     if ((child < indexOfLast) && (compare(array[child], array[child + 1])))
       child++;
     // check if parent is not smaller than a larger child
