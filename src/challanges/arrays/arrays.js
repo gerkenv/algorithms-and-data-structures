@@ -1,7 +1,7 @@
 /**
  * Count pairs of duplicates in array using `Set` object.
  */
-function countDuplicatePairs(array) {
+function countDuplicatePairsUsingSet(array) {
   let pairsCounter = 0;
   let elementSet = new Set();         // O(1)
   array.forEach(element => {          // O(n)
@@ -18,7 +18,7 @@ function countDuplicatePairs(array) {
 /**
  * Count pairs of duplicates in array using `Object`.
  */
-function countDuplicatePairs(array) {
+function countDuplicatePairsUsingObject(array) {
   let pairsCounter = 0;
   let obj = new Object();
   array.forEach(element => {
@@ -45,8 +45,8 @@ function countDuplicatePairs(array) {
  * Then each element may bribe (swap with the previous element) maximally
  * 2 times.
  * @param {*} array - array with bribed elements.
- * @returns Number - minimal count of bribes.
- * @returns 'Too chaotic' - if one element bribed more than 2 times.
+ * @returns {number} minimal count of bribes.
+ * @returns {string} `Too chaotic` - if one element bribed more than 2 times.
  */
 function minimumBribes(array) {
   let bribes = 0;
@@ -55,8 +55,7 @@ function minimumBribes(array) {
     let disposition = (array[id0] - 1) - id0;
     // check if it was moved more than 2 times forward
     if (disposition > 2) {
-      console.log('Too chaotic');
-      return;
+      return 'Too chaotic';
     }
     // get index of an element that was initially located before
     // the current element `array[id0]`
@@ -73,10 +72,10 @@ function minimumBribes(array) {
       if (array[id1] > array[id0]) bribes++;
     }
   }
-  console.log(bribes);
+  return bribes;
 }
 
-// minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]);
+// console.log(minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]));
 
 
 // /////////////////////////////////////////
@@ -234,4 +233,49 @@ function median(hist, length) {
           return (i + j) / 2;
       }
   }
+}
+
+// /////////////////////////////////////////
+// Merge sort with swap counter
+
+// https://www.hackerrank.com/challenges/ctci-merge-sort/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=sorting
+
+/**
+ * Mergesort for an `array`. Additionally returns a required
+ * amount of swaps of adjacent elements to reach mixed `array` state
+ * starting from ascending order.
+ */
+function mergeSortWithSwapsCount(array) {
+  let n = array.length;
+  let copy = array.slice();
+  let count = 0;
+  for (let halfsize = 1; halfsize < n; halfsize *= 2) {
+      for (let i = 0; i < n - halfsize; i += halfsize * 2) {
+          let low = i;
+          let middle = i + halfsize - 1;
+          let high = Math.min((i + 2 * halfsize - 1), n - 1);
+          count += mergeAndCountSwaps(array, copy, low, middle, high);
+      }
+  }
+  return count;
+}
+
+function mergeAndCountSwaps(array, copy, low, middle, high) {
+  let common = low;
+  let left = low;
+  let right = middle + 1;
+
+  for (let i = low; i <= high; i++) copy[i] = array[i];
+
+  let swaps = 0;
+
+  while (common <= high) {
+      if      (left > middle)              array[common++] = copy[right++];
+      else if (right > high)               array[common++] = copy[left++];
+      else if (copy[right] < copy[left]) {
+          swaps += (middle - left + 1);    array[common++] = copy[right++];
+      }
+      else /* copy[left] <= copy[right] */ array[common++] = copy[left++];
+  }
+  return swaps;
 }
