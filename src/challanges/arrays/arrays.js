@@ -167,3 +167,71 @@ function arrayManipulation(n, queries) {
 
   return max;
 }
+
+// /////////////////////////////////////////
+// Another Histogram
+
+// https://www.hackerrank.com/challenges/fraudulent-activity-notifications/problem?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=sorting
+
+/**
+ * Function returns a quantity of cases, where some digit
+ * is at least 2 times higher than a moving median of `d` digits
+ * period before that digit.
+ *
+ * Example:
+ * d = 3
+ * expenditure = [10, 20, 10, 30, 20]
+ * Function returns `1` only when `30` is checked.
+ * Median of `3` previous digits `[10, 20, 10]` is middle element of
+ * ascending version of the same array `[10, 10, 20]`. So median is
+ * `10`. Since digit is higher or equal to double median `30 >= 10 * 2`
+ * count is incremented.
+ *
+ * @param {number[]} expenditure - array with numbers
+ * @param {number} d -
+ */
+function countNumbersExceedingMovingMedian(expenditure, d) {
+  if (expenditure.length <= d) return 0;
+  let counter = 0;
+  let hist = getHistogram(expenditure, 0, d);
+  if (expenditure[d] >= median(hist, d) * 2) counter++;
+  for (let i = 1; i < expenditure.length - d; i++) {
+      updateHistogram(hist, expenditure[i + d - 1], expenditure[i - 1]);
+      if (expenditure[i + d] >= median(hist, d) * 2) counter++;
+  }
+  return counter;
+}
+
+function updateHistogram(hist, add, remove) {
+  hist[add]++;
+  hist[remove]--;
+}
+
+function getHistogram(array, start, length) {
+  let hist = new Array(201).fill(0);
+  for (let i = start; i < start + length; i++) {
+      hist[array[i]]++;
+  }
+  return hist;
+}
+
+function median(hist, length) {
+  let medianIndex = (length - 1) >> 1;
+
+  let i = 0;
+  for (; i < hist.length; i++) {
+      if (hist[i] > medianIndex) break;
+      else medianIndex -= hist[i];
+  }
+  if (length % 2 != 0) {
+      return i;
+  } else {
+      if (hist[i] > medianIndex + 1) {
+          return i;
+      } else {
+          let j = i + 1;
+          while (hist[j] == 0) { j++; }
+          return (i + j) / 2;
+      }
+  }
+}
