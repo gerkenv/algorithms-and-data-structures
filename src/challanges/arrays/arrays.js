@@ -279,3 +279,25 @@ function mergeAndCountSwaps(array, copy, low, middle, high) {
   }
   return swaps;
 }
+
+/**
+ * Function count pairs of elements in `array`, which have a difference `k`
+ * between their values.
+ * @param {number} k - a difference between 2 elements of array.
+ * @param {numbers[]} array - array with numbers in range `[0, 2^32-1]`.
+ * @returns {number} Amount of pairs with set difference `k`.
+ */
+function countPairsWithDifference(k, array) {
+  let map = new Map();
+  let n = array.length;
+  while (n--) {
+      let diff = array[n] - k;
+      if (diff >= 0) map.set(diff)
+  }
+  n = array.length;
+  let count = 0;
+  while (n--) {
+      if (map.has(array[n])) count++;
+  }
+  return count;
+}
